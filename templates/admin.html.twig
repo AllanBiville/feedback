@@ -1,19 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Panel Administrateur - {% block title %}{% endblock %}</title>
-        <link rel="icon" href="{{ asset('favicons/admin.png') }}">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>Panel Administrateur -
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="icon" href="{{ asset('favicons/admin.png') }}">
+		<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+       
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Menu</span>
+					</button>
+				</div>
+				<div class="p-4">
+					<h1>
+						<a href="/admin" class="logo">FeedBack</a>
+					</h1>
+					<ul class="list-unstyled components mb-5">
+						<li class="active">
+							<a href="/admin">
+								<span class="fa fa-home mr-3"></span>
+								Accueil</a>
+						</li>
+						{# <li>
+							<a href="/pin/1/edit">
+								<span class="fa fa-gears mr-3"></span>
+								Code Pin</a>
+						</li>
+						<li>
+							<a href="/table">
+								<span class="fa fa-user mr-3"></span>
+								Avis</a>
+						</li>
+						<li>
+							<a href="/user">
+								<span class="fa fa-briefcase mr-3"></span>
+								Ajouter Utilisateur</a>
+						</li>
+						 <li>
+														              <a href=""><span class="fa fa-briefcase mr-3"></span> Ajouter Champs Avis</a>
+															          </li> 
+						<li>
+							<a href="/graph/dashboard">
+								<span class="fa fa-sticky-note mr-3"></span>
+								Graphique</a>
+						</li> #}
+					</ul>
+
+
+					<div class="footer">
+						<p>
+							Copyright &copy;<script>
+								document.write(new Date().getFullYear());
+							</script>
+                            <br/>
+							All rights reserved
+						</p>
+					</div>
+
+					<a class="btn btn-danger" href="{{ path('app_logout') }}">{{'Déconnexion'|trans}}</a>
+
+				</div>
+			</nav>
+
+	<div id="content" class="text-center p-4 p-md-5 pt-5">
+
+	
+            {% block body %}{% endblock %}
+            </div>
+		<script src="{{asset('javascript/jquery.min.js') }}"></script>
+		<script src="{{asset('javascript/popper.js') }}"></script>
+		<script src="{{asset('javascript/bootstrap.min.js') }}"></script>
+		<script src="{{asset('javascript/main.js') }}"></script>
+</div>
+	</body>
 </html>

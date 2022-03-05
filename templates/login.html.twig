@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Connexion - {% block title %}{% endblock %}</title>
+        <title>FeedBack - {% block title %}{% endblock %}</title>
         <link rel="icon" href="{{ asset('favicons/login.png') }}">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

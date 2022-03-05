@@ -1,0 +1,29 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+        <img id="feedback-logo" src="{{ asset('images/feedback.png') }}" alt="">
+		<h1 class="mt-5 mb-4">Bonjour {% if app.user %}{{ app.user.username }}{% endif %}</h2>
+
+		<h5>Bienvenue sur le <b>panel d'administration</b> de l'application <b>FeedBack</b> ! <br/><br/>
+
+		Ce panel permet de <b>voir en temps réel</b> <b>les avis</b> sur le <b>self</b> de manière:<br/>
+         - Graphique<br/>
+         - Tableau<br/><br/>
+
+         Avec possibilité de les <b>exporter</b> sous format :<br/>
+         - Excel<br/>
+         - PDF<br/><br/>
+ 
+        Le site est <b>adaptable</b>, c'est à dire que depuis le panel administrateur on peut :<br/>
+        - Ajouter des utilisateurs <br/>
+        - Rajouter des critères de notations du self<br/>
+        - Gérer le QRCode<br/><br/>
+		
+        En cas d'incident, vous pouvez prévenir les concepteurs de l'application, cinq élèves de SIO2 2022 ou voir avec Mr.Bouquet.<br/><br/>
+
+		Cette application à été créé pour <b>la restauration du Lycée Notre Dame de la Providence à Avranches.</b></h5>
+		<img id="feedback-logo" class="mt-5"src="{{ asset('images/ndlp.jpg') }}" alt="">
+
+{% endblock %}
