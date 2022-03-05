@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<style>
+		.containeur-homepage #wave-logo {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+		}
+		.containeur-homepage #feedback-logo {
+			width: 250px;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -125px;
+			z-index: 2;
+		}
+		.containeur-homepage .flexbox {
+            margin-top:-50px;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
+		.containeur-homepage .flexbox #items1 {
+			width: 45%;
+			background-color: #B0413E;
+			border-radius: 5%;
+			margin: 40px;
+            cursor:pointer;
+		}
+		.containeur-homepage .flexbox #items2 {
+			width: 45%;
+			background-color: #FCAA67;
+			border-radius: 5%;
+			margin: 40px;
+            cursor:pointer;
+		}
+		.containeur-homepage .flexbox #items1 p,
+		.containeur-homepage .flexbox #items2 p {
+            color:white;
+            text-decoration:none;
+            font-size:200%;
+            text-align:center;
+            margin-top:25px;
+		}
+
+		.containeur-homepage .flexbox #items1 img,
+		.containeur-homepage .flexbox #items2 img {
+			width: 30%;
+			margin: 0px auto;
+			display: block;
+            padding:50px;
+		}
+
+		{# #DB5461 ROUGE #00A2E8 BLEU #}
+	</style>
+
+	<div class="containeur-homepage">
+		<img id="wave-logo" src="{{ asset('images/wave.svg') }}"/>
+		<img id="feedback-logo" src="{{ asset('images/feedback.png') }}"/>
+		<div class="flexbox">
+			<div id="items1" onclick="document.location='/login'">>
+					<p>Accédez au panel administrateur</p>
+					<a href="/login"><img src="{{ asset('images/login.png') }}"/></a>
+			</div>
+        
+			<div id="items2" onclick="document.location='/avis'">
+					<p>Accédez à la génération du QRCode</p>
+					<a href="/avis"><img src="{{ asset('images/qrcode.png') }}"/></a>
+			</div>
+            
+		</div>
+	</div>
+
+{% endblock %}
