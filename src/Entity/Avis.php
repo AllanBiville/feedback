@@ -39,11 +39,6 @@ class Avis
      */
     private $Commentaire;
 
-    /**
-     * @ORM\OneToMany(targetEntity=AvisCategories::class, mappedBy="avis")
-     */
-    private $categories;
-
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -98,36 +93,6 @@ class Avis
     public function setCommentaire(string $Commentaire): self
     {
         $this->Commentaire = $Commentaire;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, AvisCategories>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(AvisCategories $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-            $category->setAvis($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(AvisCategories $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getAvis() === $this) {
-                $category->setAvis(null);
-            }
-        }
 
         return $this;
     }
