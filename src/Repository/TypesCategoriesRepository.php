@@ -1,31 +1,31 @@
 <?php
 
-namespace App\Repository;
+namespace App\Entity;
 
-use App\Entity\TypesUtilisateurs;
+use App\Entity\TypesCategories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method TypesUtilisateurs|null find($id, $lockMode = null, $lockVersion = null)
- * @method TypesUtilisateurs|null findOneBy(array $criteria, array $orderBy = null)
- * @method TypesUtilisateurs[]    findAll()
- * @method TypesUtilisateurs[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TypesCategories|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TypesCategories|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TypesCategories[]    findAll()
+ * @method TypesCategories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypesUtilisateursRepository extends ServiceEntityRepository
+class TypesCategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TypesUtilisateurs::class);
+        parent::__construct($registry, TypesCategories::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(TypesUtilisateurs $entity, bool $flush = true): void
+    public function add(TypesCategories $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class TypesUtilisateursRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(TypesUtilisateurs $entity, bool $flush = true): void
+    public function remove(TypesCategories $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class TypesUtilisateursRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return TypesUtilisateurs[] Returns an array of TypesUtilisateurs objects
+    //  * @return TypesCategories[] Returns an array of TypesCategories objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class TypesUtilisateursRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TypesUtilisateurs
+    public function findOneBySomeField($value): ?TypesCategories
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

@@ -5,17 +5,17 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypesRepas
+ * TypesUsers
  *
- * @ORM\Table(name="types_repas")
- * @ORM\Entity(repositoryClass=TypesRepasRepository::class)
+ * @ORM\Table(name="types_users")
+ * @ORM\Entity(repositoryClass=TypesUsersRepository::class)
  */
-class TypesRepas
+class TypesUsers
 {
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="string", length=50, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -28,7 +28,7 @@ class TypesRepas
      */
     private $name;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

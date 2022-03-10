@@ -2,28 +2,29 @@
 
 namespace App\Entity;
 
-use App\Repository\QrcodeTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * QrcodeToken
+ *
+ * @ORM\Table(name="qrcode_token")
  * @ORM\Entity(repositoryClass=QrcodeTokenRepository::class)
  */
 class QrcodeToken
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $date;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     *
+     * @ORM\Column(name="token", type="string", length=150, nullable=false)
      */
     private $token;
 
@@ -32,27 +33,17 @@ class QrcodeToken
         return $this->id;
     }
 
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
-
-    public function setDate(string $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->token = $token;
 
         return $this;
     }
+
+
 }

@@ -2,51 +2,68 @@
 
 namespace App\Entity;
 
-use App\Repository\AvisRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Avis
+ *
+ * @ORM\Table(name="avis", indexes={@ORM\Index(name="id_2", columns={"id_2"}), @ORM\Index(name="id_1", columns={"id_1"})})
  * @ORM\Entity(repositoryClass=AvisRepository::class)
  */
 class Avis
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @var string|null
+     *
+     * @ORM\Column(name="commentary", type="string", length=255, nullable=true)
+     */
+    private $commentary;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="date_", type="string", length=10, nullable=false)
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @var int
+     *
+     * @ORM\Column(name="id_1", type="integer", nullable=false)
      */
-    private $Utilisateur;
+    private $id1;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @var string
+     *
+     * @ORM\Column(name="id_2", type="string", length=50, nullable=false)
      */
-    private $Heure;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Commentaire;
-
-    public function __construct()
-    {
-        $this->categories = new ArrayCollection();
-    }
+    private $id2;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getCommentary(): ?string
+    {
+        return $this->commentary;
+    }
+
+    public function setCommentary(?string $commentary): self
+    {
+        $this->commentary = $commentary;
+
+        return $this;
     }
 
     public function getDate(): ?string
@@ -54,46 +71,36 @@ class Avis
         return $this->date;
     }
 
-    public function setDate(string $date): self
+    public function setDate(?string $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getUtilisateur(): ?string
+    public function getId1(): ?int
     {
-        return $this->Utilisateur;
+        return $this->id1;
     }
 
-    public function setUtilisateur(string $Utilisateur): self
+    public function setId1(int $id1): self
     {
-        $this->Utilisateur = $Utilisateur;
+        $this->id1 = $id1;
 
         return $this;
     }
 
-    public function getHeure(): ?string
+    public function getId2(): ?string
     {
-        return $this->Heure;
+        return $this->id2;
     }
 
-    public function setHeure(string $Heure): self
+    public function setId2(string $id2): self
     {
-        $this->Heure = $Heure;
+        $this->id2 = $id2;
 
         return $this;
     }
 
-    public function getCommentaire(): ?string
-    {
-        return $this->Commentaire;
-    }
 
-    public function setCommentaire(string $Commentaire): self
-    {
-        $this->Commentaire = $Commentaire;
-
-        return $this;
-    }
 }

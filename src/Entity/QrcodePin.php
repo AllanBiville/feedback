@@ -2,23 +2,29 @@
 
 namespace App\Entity;
 
-use App\Repository\QrcodePinRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * QrcodePin
+ *
+ * @ORM\Table(name="qrcode_pin")
  * @ORM\Entity(repositoryClass=QrcodePinRepository::class)
  */
 class QrcodePin
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string
+     *
+     * @ORM\Column(name="pin", type="string", length=50, nullable=false)
      */
     private $pin;
 
@@ -27,15 +33,17 @@ class QrcodePin
         return $this->id;
     }
 
-    public function getPin(): ?int
+    public function getPin(): ?string
     {
         return $this->pin;
     }
 
-    public function setPin(int $pin): self
+    public function setPin(string $pin): self
     {
         $this->pin = $pin;
 
         return $this;
     }
+
+
 }
