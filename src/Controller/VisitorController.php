@@ -4,7 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Avis;
-use App\Form\VisitorType;
+use App\Form\AvisType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TypesCategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +17,10 @@ class VisitorController extends AbstractController
     /**
      * @Route("/visitor", name="app_visitor")
      */
-    public function index(TypesCategoriesRepository $typesCategoriesRepository,Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $avis = new Avis();
-        $form = $this->createForm(VisitorType::class, $avis);
+        $form = $this->createForm(AvisType::class, $avis);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
            
@@ -33,7 +33,7 @@ class VisitorController extends AbstractController
         }
         return $this->render('visitor/index.html.twig', [
             'controller_name' => 'VisitorController',
-            'categories' => $typesCategoriesRepository->findAll(),
+            // 'categories' => $typesCategoriesRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

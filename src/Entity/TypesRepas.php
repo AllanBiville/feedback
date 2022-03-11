@@ -2,35 +2,26 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TypesRepasRepository;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypesRepas
- *
- * @ORM\Table(name="types_repas")
  * @ORM\Entity(repositoryClass=TypesRepasRepository::class)
  */
 class TypesRepas
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
-    public function __toString(){
-        return $this->name;
-    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,12 +32,10 @@ class TypesRepas
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
-
-
 }

@@ -2,58 +2,58 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AvisRepository;
-
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Avis
- *
- * @ORM\Table(name="avis", indexes={@ORM\Index(name="id_2", columns={"id_2"}), @ORM\Index(name="id_1", columns={"id_1"})})
  * @ORM\Entity(repositoryClass=AvisRepository::class)
  */
 class Avis
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="commentary", type="string", length=255, nullable=true)
-     */
-    private $commentary;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="date_", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $date;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_1", type="integer", nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $id1;
+    private $commentary;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="id_2", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=TypesUsers::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $id2;
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypesRepas::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Repas;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
     }
 
     public function getCommentary(): ?string
@@ -68,41 +68,27 @@ class Avis
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getUsers(): ?TypesUsers
     {
-        return $this->date;
+        return $this->users;
     }
 
-    public function setDate(?string $date): self
+    public function setUsers(?TypesUsers $users): self
     {
-        $this->date = $date;
+        $this->users = $users;
 
         return $this;
     }
 
-    public function getId1(): ?int
+    public function getRepas(): ?TypesRepas
     {
-        return $this->id1;
+        return $this->Repas;
     }
 
-    public function setId1($id1): self
+    public function setRepas(?TypesRepas $Repas): self
     {
-        $this->id1 = $id1;
+        $this->Repas = $Repas;
 
         return $this;
     }
-
-    public function getId2(): ?int
-    {
-        return $this->id2;
-    }
-
-    public function setId2($id2): self
-    {
-        $this->id2 = $id2;
-
-        return $this;
-    }
-
-
 }
