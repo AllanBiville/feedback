@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TypesUsersRepository;
 
 /**
  * TypesUsers
@@ -15,7 +16,7 @@ class TypesUsers
     /**
      * @var string
      *
-     * @ORM\Column(name="id", type="string", length=50, nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -27,8 +28,10 @@ class TypesUsers
      * @ORM\Column(name="name", type="string", length=50, nullable=false)
      */
     private $name;
-
-    public function getId(): ?string
+    public function __toString(){
+        return $this->name;
+    }
+    public function getId(): ?int
     {
         return $this->id;
     }

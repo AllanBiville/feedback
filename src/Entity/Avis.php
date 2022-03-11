@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AvisRepository;
+
 
 /**
  * Avis
@@ -45,7 +47,7 @@ class Avis
     /**
      * @var string
      *
-     * @ORM\Column(name="id_2", type="string", length=50, nullable=false)
+     * @ORM\Column(name="id_2", type="integer", nullable=false)
      */
     private $id2;
 
@@ -83,19 +85,19 @@ class Avis
         return $this->id1;
     }
 
-    public function setId1(int $id1): self
+    public function setId1($id1): self
     {
         $this->id1 = $id1;
 
         return $this;
     }
 
-    public function getId2(): ?string
+    public function getId2(): ?int
     {
         return $this->id2;
     }
 
-    public function setId2(string $id2): self
+    public function setId2($id2): self
     {
         $this->id2 = $id2;
 

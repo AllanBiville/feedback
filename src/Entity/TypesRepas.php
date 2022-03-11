@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TypesRepasRepository;
 
 /**
  * TypesRepas
@@ -27,7 +28,9 @@ class TypesRepas
      * @ORM\Column(name="name", type="string", length=50, nullable=false)
      */
     private $name;
-
+    public function __toString(){
+        return $this->name;
+    }
     public function getId(): ?int
     {
         return $this->id;
