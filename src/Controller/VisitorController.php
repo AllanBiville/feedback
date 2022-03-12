@@ -17,7 +17,7 @@ class VisitorController extends AbstractController
     /**
      * @Route("/visitor", name="app_visitor")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(TypesCategoriesRepository $typesCategoriesRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $avis = new Avis();
         $form = $this->createForm(AvisType::class, $avis);
@@ -33,7 +33,7 @@ class VisitorController extends AbstractController
         }
         return $this->render('visitor/index.html.twig', [
             'controller_name' => 'VisitorController',
-            // 'categories' => $typesCategoriesRepository->findAll(),
+            'categories' => $typesCategoriesRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }
