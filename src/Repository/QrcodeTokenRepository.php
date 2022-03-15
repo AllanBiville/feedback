@@ -44,7 +44,24 @@ class QrcodeTokenRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
+    public function tokenExist($value)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.date = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    public function tokenVerify($date)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.date = :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
     // /**
     //  * @return QrcodeToken[] Returns an array of QrcodeToken objects
     //  */

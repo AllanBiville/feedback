@@ -30,10 +30,10 @@ class TypesCategories
     /**
      * @ORM\Column(type="boolean")
      */
-    private $disabled;
+    private $statut;
 
     public function __construct(){
-        $this->disabled = false;
+        $this->statut = true;
     }
     
     public function getId(): ?int
@@ -65,14 +65,14 @@ class TypesCategories
         return $this;
     }
 
-    public function getDisabled(): ?bool
+    public function getStatut(): ?bool
     {
-        return $this->disabled;
+        return $this->statut;
     }
 
-    public function setDisabled(bool $disabled): self
+    public function setStatut(bool $statut): self
     {
-        $this->disabled = $disabled;
+        $this->statut = $statut;
 
         return $this;
     }

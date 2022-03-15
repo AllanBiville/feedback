@@ -45,12 +45,12 @@ class TypesCategoriesRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAll($all = false)
+    public function findAll($all = true)
     {
         $qb = $this->createQueryBuilder('t');
-        if (!$all) {
-            $qb->andWhere('t.disabled = :disabled');
-            $qb->setParameter('disabled', $all);
+        if ($all) {
+            $qb->andWhere('t.statut = :statut');
+            $qb->setParameter('statut', $all);
             $qb->orderBy('t.id', 'ASC');
         }
         return $qb->getQuery()->getResult();

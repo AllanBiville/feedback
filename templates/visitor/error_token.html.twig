@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+			{% block title %}Erreur QRCODE
+			{% endblock %}
+	
+
+
+		{% block body %}
+
+			<div class="position-absolute top-0 start-50 translate-middle-x mb-5"><img style="width:250px;" src="/images/feedback.png" alt=""></div>
+
+
+			<div class="container position-absolute top-50 start-50 translate-middle">
+				<div class="card text-white bg-danger text-center">
+					<div class="card-header">
+						ERREUR : QRDODE INVALIDE
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Veuillez rescanner le QRCODE</h5>
+						<p class="card-text">Si le problème persiste, parlez en au lycée !</p>
+					</div>
+					<div class="card-footer">
+						NDLP
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+
