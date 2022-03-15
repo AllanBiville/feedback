@@ -152,7 +152,7 @@ class VisitorController extends AbstractController
 
             return $this->redirectToRoute("app_visitor_save");
         }
-        return $this->render('visitor/index.html.twig', [
+        return $this->render('visitor/form.html.twig', [
             'controller_name' => 'VisitorController',
             'categories' => $typesCategoriesRepository->findAll(),
             'form' => $form->createView(),

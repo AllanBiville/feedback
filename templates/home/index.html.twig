@@ -4,6 +4,84 @@
 {% endblock %}
 
 {% block body %}
+<style>
+.containeur-homepage .menu {
+    width: 100%;
+    background-color: #00A2E8;
+    height: 300px;
+    margin-bottom: 200px;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+
+}
+
+.containeur-homepage #feedback-logo {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 25px;
+
+}
+
+.containeur-homepage .flexbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media screen and (max-width:800px) {
+    .containeur-homepage .menu {
+
+        margin-bottom: 80px;
+
+
+    }
+
+    .containeur-homepage .flexbox {
+        flex-direction: column !important;
+    }
+
+    .containeur-homepage .flexbox #items1,
+    .containeur-homepage .flexbox #items2 {
+        margin: 0px auto 50px !important;
+    }
+}
+
+.containeur-homepage .flexbox #items1 {
+    width: 45%;
+    background-color: #B0413E;
+    border-radius: 5%;
+    margin: 20px 40px 40px;
+    cursor: pointer;
+}
+
+.containeur-homepage .flexbox #items2 {
+    width: 45%;
+    background-color: #FCAA67;
+    border-radius: 5%;
+    margin: 20px 40px 40px;
+    cursor: pointer;
+}
+
+.containeur-homepage .flexbox #items1 p,
+.containeur-homepage .flexbox #items2 p {
+    color: white;
+    text-decoration: none;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 25px;
+    padding: 0px 5px;
+}
+
+.containeur-homepage .flexbox #items1 img,
+.containeur-homepage .flexbox #items2 img {
+    width: 30%;
+    margin: 0 auto;
+    display: block;
+    padding: 50px;
+    min-width: 150px;
+}
+</style>
 	<div class="containeur-homepage">
 	<div class="menu">
 		<img id="feedback-logo" src="{{ asset('images/feedback.png') }}"/>
