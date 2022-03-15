@@ -27,6 +27,15 @@ class TypesCategories
      */
     private $longname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $disabled;
+
+    public function __construct(){
+        $this->disabled = false;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +61,18 @@ class TypesCategories
     public function setLongname(string $longname): self
     {
         $this->longname = $longname;
+
+        return $this;
+    }
+
+    public function getDisabled(): ?bool
+    {
+        return $this->disabled;
+    }
+
+    public function setDisabled(bool $disabled): self
+    {
+        $this->disabled = $disabled;
 
         return $this;
     }

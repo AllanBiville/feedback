@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Avis;
 use App\Form\AvisType;
+use App\Entity\AvisTypesCategories;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TypesCategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,13 +21,21 @@ class VisitorController extends AbstractController
     public function index(TypesCategoriesRepository $typesCategoriesRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $avis = new Avis();
+        
         $form = $this->createForm(AvisType::class, $avis);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-           
-            dump($avis);
-            dump($request);
+            foreach ($typesCategoriesRepository->findAll() as $tc){
+                $note = $request->get($tc->getId());
+                $atc = new AvisTypesCategories();
+                $atc->setAvis($avis);
+                $atc->setTypesCategories($tc);
+                $atc->setNote($note);
+                $entityManager->persist($atc);
+            }
+
             $entityManager->persist($avis);
+
             $entityManager->flush();
 
             // return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
