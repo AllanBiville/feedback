@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Code Pin
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
+	<div class="position-absolute top-0 start-50 translate-middle-x mb-5"><img src="images/ndlp.jpg" alt=""></div>
+
+	<div class="container position-absolute top-50 start-50 translate-middle">
+		<div class="card">
+			<div class="card-header">
+				CODE PIN
+			</div>
+			{{form_start(form)}}
+
+			<div class="card-body">
+				<h5 class="card-title">Insérer le code pin</h5>
+				<div class="input-group mb-3 w-25 ">
+					{{form_widget(form.pin)}}
+				</div>
+				{{form_widget(form.submit)}}
+			</div>
+			{{form_end(form)}}
+		</div>
+	</div>
+
+{% endblock %}
