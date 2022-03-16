@@ -10,27 +10,42 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AvisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
             ->add('users', EntityType::class,[
                 'class' => TypesUsers::class,
                 'choice_label' => 'name',
                 'choice_value' => 'id',
-                
+                'attr' => [
+                    'class' => 'form-select form-select-lg w-50'
+                ] 
             ])
             ->add('repas', EntityType::class,[
                 'class' => TypesRepas::class,
                 'choice_label' => 'name',
                 'choice_value' => 'id',
+                'attr' => [
+                    'class' => 'form-select form-select-lg w-50'
+                ] 
                 
             ])
-                ->add('commentary')
-                ->add('submit',SubmitType::class)
+                ->add('commentary', TextareaType::class,[
+                    'attr' => [
+                        'id' => 'textarea',
+                        'placeholder' => 'Commentaire (Facultatif)',
+                        'maxlength' => '255'
+                    ]
+                ])
+                ->add('submit',SubmitType::class,[
+                    'label' => 'Envoyer',
+                    'attr' => [
+                    'class' => 'btn-lg'
+                ]])
                 ;
         ;
     }

@@ -27,6 +27,15 @@ class TypesCategories
      */
     private $longname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $statut;
+
+    public function __construct(){
+        $this->statut = true;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +61,18 @@ class TypesCategories
     public function setLongname(string $longname): self
     {
         $this->longname = $longname;
+
+        return $this;
+    }
+
+    public function getStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Donnez votre avis !{% endblock %}
+
+{% block body %}
+
+<div class="header">
+
+				<div class="container py-5 text-center">
+					<h1>Avis sur le self</h1>
+					<p>Ce site web vous permet de noter le self dans diverses catégories,
+						<b>à titre anonyme</b>.</p>
+				</div>
+			</div>
+
+			
+{{form_start(form)}}
+
+
+
+				<div class="star-ratings-input">
+					<h2>Votre classe</h2>
+					<p>Indiquez votre section du lycée.</p>
+			{{form_widget(form.users)}}
+
+					
+				</div>
+
+				<div class="star-ratings-input">
+					<h2>Horaire repas</h2>
+					<p>Indiquez l'horaire du repas.</p>
+					{{form_widget(form.repas)}}
+				</div>
+
+ {% for categorie in categories %}
+				<div class="star-ratings-input">
+					<h2>{{ categorie.longname }}</h2>
+					<p>Indiquez votre avis en notant de 1 à 5 étoiles.</p>
+
+
+					<input type="radio" id="note-{{ categorie.shortname }}1" value="1" name="{{ categorie.id }}" checked/>
+					<input type="radio" id="note-{{ categorie.shortname }}2" value="2" name="{{ categorie.id }}"/>
+					<input type="radio" id="note-{{ categorie.shortname }}3" value="3" name="{{ categorie.id }}"/>
+					<input type="radio" id="note-{{ categorie.shortname }}4" value="4" name="{{ categorie.id }}"/>
+					<input type="radio" id="note-{{ categorie.shortname }}5" value="5" name="{{ categorie.id }}"/>
+					<div class="stars">
+						<label for="note-{{ categorie.shortname }}5">★</label>
+						<label for="note-{{ categorie.shortname }}4">★</label>
+						<label for="note-{{ categorie.shortname }}3">★</label>
+						<label for="note-{{ categorie.shortname }}2">★</label>
+						<label for="note-{{ categorie.shortname }}1">★</label>
+					</div>
+				</div>
+                {% endfor %} 
+				<div class="star-ratings-input">
+					<h2>Commentaire</h2>
+					<p>Ecrivez ce que vous voulez !</p>
+					{{form_widget(form.commentary)}}
+				</div>
+				
+				{{form_widget(form.submit)}}
+                {{form_end(form)}}
+{% endblock %}

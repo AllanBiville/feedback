@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+			{% block title %}Erreur !
+			{% endblock %}
+	
+{% block body %}
+
+	<div class="text-center">
+        <img style="width:200px;" src="/images/ndlp.jpg">
+		<br/><br/><br/><br/>
+		<i style="color:red; font-size:60px;" class="fa fa-times" aria-hidden="true"></i><br/><br/>
+		<h2 style="color:red">Ooooops !</h2>
+        <h3>Le QRCode scanner est invalide, essayez de le rescanner.</h3>
+        <p style="font-size:20px;color:#5C5C5C;">Si le problème persiste, parlez en au lycée !<br/><br/><br/>
+		Cordialement,<br/> NDLP</p>  
+	</div>
+		{% endblock %}
+

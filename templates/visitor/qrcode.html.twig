@@ -1,0 +1,14 @@
+
+
+{% extends 'base.html.twig' %}
+{% block title %}QRCode
+{% endblock %}
+{% block body %}
+<style>
+  body{
+      text-align:center;
+  }
+</style>
+	<img src="{{ data_url }}"/><br/>
+    <a class="btn btn-lg btn-danger" href="/">Déconnexion</a>
+{% endblock %}
