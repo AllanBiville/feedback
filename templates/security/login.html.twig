@@ -3,11 +3,16 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<div class="container">
-<form method="post">
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+
+	<div class="text-center">
+        <img style="width:200px;" src="/images/ndlp.jpg">
+        </div>
+<div class="container">
+<form method="post">
 
     <h1 class="text-center mt-5 mb-5 font-weight-bolder">Accédez au panel administrateur</h1>
     <label for="inputUsername">Nom d'utilisateur</label>
@@ -16,9 +21,7 @@
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     <br/><br/>
     <div class="d-grid gap-2">
 <button class="btn btn-lg btn-primary" type="submit">
