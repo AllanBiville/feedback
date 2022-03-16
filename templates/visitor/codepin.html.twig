@@ -9,24 +9,22 @@
 			{{ message }}
 		</div>
 	{% endfor %}
-	<div class="position-absolute top-0 start-50 translate-middle-x mb-5"><img src="images/ndlp.jpg" alt=""></div>
 
-	<div class="container position-absolute top-50 start-50 translate-middle">
-		<div class="card">
-			<div class="card-header">
-				CODE PIN
-			</div>
-			{{form_start(form)}}
-
+		<div class="text-center">
+        <img style="width:200px;" src="/images/ndlp.jpg">
+		<br/><br/><br/><br/>
+		<i style="font-size:60px;" class="fa fa-qrcode" aria-hidden="true"></i><br/><br/>
+		<h2>Code Pin</h2>
+        <h3>Pour accédez à la génération du QRCode, veuillez entrez le code PIN !</h3>
+		{{form_start(form)}}
 			<div class="card-body">
-				<h5 class="card-title">Insérer le code pin</h5>
-				<div class="input-group mb-3 w-25 ">
+				<div class="input-group mx-auto mb-3 w-25 ">
 					{{form_widget(form.pin)}}
 				</div>
 				{{form_widget(form.submit)}}
 			</div>
 			{{form_end(form)}}
-		</div>
 	</div>
-
 {% endblock %}
+	
+

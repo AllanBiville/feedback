@@ -3,11 +3,37 @@
 {% block title %}Donnez votre avis !{% endblock %}
 
 {% block body %}
+
+<div class="header">
+
+				<div class="container py-5 text-center">
+					<h1>Avis sur le self</h1>
+					<p>Ce site web vous permet de noter le self dans diverses catégories,
+						<b>à titre anonyme</b>.</p>
+				</div>
+			</div>
+
+			
 {{form_start(form)}}
+
+
+
+				<div class="star-ratings-input">
+					<h2>Votre classe</h2>
+					<p>Indiquez votre section du lycée.</p>
+			{{form_widget(form.users)}}
+
+					
+				</div>
+
+				<div class="star-ratings-input">
+					<h2>Horaire repas</h2>
+					<p>Indiquez l'horaire du repas.</p>
+					{{form_widget(form.repas)}}
+				</div>
+
  {% for categorie in categories %}
-				<div
-					class="star-ratings-input">
-					<!--GOUT-->
+				<div class="star-ratings-input">
 					<h2>{{ categorie.longname }}</h2>
 					<p>Indiquez votre avis en notant de 1 à 5 étoiles.</p>
 
@@ -26,5 +52,12 @@
 					</div>
 				</div>
                 {% endfor %} 
+				<div class="star-ratings-input">
+					<h2>Commentaire</h2>
+					<p>Ecrivez ce que vous voulez !</p>
+					{{form_widget(form.commentary)}}
+				</div>
+				
+				{{form_widget(form.submit)}}
                 {{form_end(form)}}
 {% endblock %}

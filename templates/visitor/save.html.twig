@@ -1,25 +1,15 @@
 {% extends 'base.html.twig' %}
-			{% block title %}Avis envoyé !
-			{% endblock %}
-
+{% block title %}Avis envoyé !{% endblock %}
 		{% block body %}
 
-			<div class="position-absolute top-0 start-50 translate-middle-x mt-5"><img src="/images/ndlp.jpg" alt=""></div>
-
-
-			<div class="container position-absolute top-50 start-50 translate-middle">
-				<div class="card text-white bg-success text-center">
-					<div class="card-header">
-						Avis
-					</div>
-					<div class="card-body">
-						<h5 class="card-title">Avis reçu</h5>
-						<p class="card-text">Votre avis à bien été envoyé.</p>
-					</div>
-					<div class="card-footer">
-						Merci !
-					</div>
-				</div>
-			</div>
+	<div class="text-center">
+        <img style="width:200px;" src="/images/ndlp.jpg">
+		<br/><br/><br/><br/>
+		<i style="color:#0fad00; font-size:60px;"class="fa fa-check" aria-hidden="true"></i><br/><br/>
+		<h2 style="color:#0fad00">Parfait !</h2>
+        <h3>Votre avis a été envoyé !</h3>
+        <p style="font-size:20px;color:#5C5C5C;">Merci d'avoir pris le temps de noter notre restauration !<br/>Votre avis compte beaucoup !<br/><br/><br/>
+		A demain !<br/> NDLP</p>  
+	</div>
 		{% endblock %}
 

@@ -1,28 +1,21 @@
 {% extends 'base.html.twig' %}
 
-			{% block title %}Spam formulaire
+			{% block title %}Erreur !
 			{% endblock %}
 	
 
 
-		{% block body %}
 
-			<div class="position-absolute top-0 start-50 translate-middle-x mb-5"><img style="width:250px;" src="/images/feedback.png" alt=""></div>
+{% block body %}
 
-
-			<div class="container position-absolute top-50 start-50 translate-middle">
-				<div class="card text-white bg-danger text-center">
-					<div class="card-header">
-						Attention, vous avez été classés commme personnes frauduleuses !
-					</div>
-					<div class="card-body">
-						<h5 class="card-title">Vous ne pourrez plus donnez votre avis aujourd'hui !</h5>
-						<p class="card-text">A demain !</p>
-					</div>
-					<div class="card-footer">
-						NDLP
-					</div>
-				</div>
-			</div>
+	<div class="text-center">
+        <img style="width:200px;" src="/images/ndlp.jpg">
+		<br/><br/><br/><br/>
+		<i style="color:red; font-size:60px;" class="fa fa-times" aria-hidden="true"></i><br/><br/>
+		<h2 style="color:red">Ooooops !</h2>
+        <h3>Vous avez été détecter commme une personne frauduleuses !</h3>
+        <p style="font-size:20px;color:#5C5C5C;">Vous ne pourrez plus donnez votre avis aujourd'hui !<br/><br/><br/>
+		A demain !<br/> NDLP</p>  
+	</div>
 		{% endblock %}
 

@@ -137,6 +137,9 @@ class VisitorController extends AbstractController
             if ($session->get('send') == "True"){
                 return $this->redirectToRoute("app_visitor_spam");
             }
+
+            $avis->setDate(date('d-m-Y'));
+            
             foreach ($typesCategoriesRepository->findAll() as $tc){
                 $note = $request->get($tc->getId());
                 $atc = new AvisTypesCategories();
