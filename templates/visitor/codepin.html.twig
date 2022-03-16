@@ -4,11 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{% for message in app.flashes('danger') %}
-		<div class="alert alert-danger">
-			{{ message }}
-		</div>
-	{% endfor %}
+
 
 		<div class="text-center">
         <img style="width:200px;" src="/images/ndlp.jpg">
@@ -18,9 +14,15 @@
         <h3>Pour accédez à la génération du QRCode, veuillez entrez le code PIN !</h3>
 		{{form_start(form)}}
 			<div class="card-body">
+
 				<div class="input-group mx-auto mb-3 w-25 ">
 					{{form_widget(form.pin)}}
 				</div>
+								{% for message in app.flashes('danger') %}
+		<div class="mx-auto w-25 alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
 				{{form_widget(form.submit)}}
 			</div>
 			{{form_end(form)}}
