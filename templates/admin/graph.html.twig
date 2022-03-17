@@ -1,0 +1,16 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Graphique{% endblock %}
+
+{% block body %}
+    <h1>Les avis du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} le {{repas}} </h1>
+
+    {{form_start(form)}}
+        Afficher du : {{form_widget(form.startDate)}} 
+        au {{form_widget(form.endDate)}}
+        le {{form_widget(form.repas)}}
+		{{form_widget(form.submit)}}
+    {{form_end(form)}}
+
+{% endblock %}
+

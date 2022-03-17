@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
        
 
@@ -39,8 +38,13 @@
 					<ul class="list-unstyled components mb-5">
 						<li class="active">
 							<a href="/admin">
-								<span class="fa fa-home mr-3"></span>
+								<span class="fas fa-home mr-3"></span>
 								Accueil</a>
+						</li>
+						<li>
+							<a href="/admin/graph">
+								<span class="fas fa-chart-pie mr-3"></span>
+								Graphique</a>
 						</li>
 						{# <li>
 							<a href="/pin/1/edit">
@@ -92,6 +96,7 @@
 		<script src="{{asset('javascript/popper.js') }}"></script>
 		<script src="{{asset('javascript/bootstrap.min.js') }}"></script>
 		<script src="{{asset('javascript/main.js') }}"></script>
+		<script src="https://kit.fontawesome.com/e838603ccd.js" crossorigin="anonymous"></script>
 </div>
 	</body>
 </html>
