@@ -1,0 +1,23 @@
+{{ form_start(form) }}  
+    <div class="input-container">
+        {{ form_widget(form.username) }}
+        <label for="#{label}">Nom d'utilisateur</label>
+        <div class="bar"></div>
+      </div>
+    <div class="input-container">
+        {{ form_widget(form.password) }}
+        <label for="#{label}">Mot de passe</label>
+        <div class="bar"></div>
+      </div>
+        <div class="input-container">
+        {{ form_widget(form.roles) }}
+        <label for="#{label}">Roles</label>
+        <div class="bar"></div>
+      </div>
+      
+      
+      <div class="button-container">
+        <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+      </div>
+     
+    {{ form_end(form) }}
