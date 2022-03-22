@@ -176,8 +176,9 @@ class VisitorController extends AbstractController
         
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('visitor/qrcodepdf.html.twig', [
-            'title' => "Welcome to our PDF Test",
+            'title' => "PDF",
             'data_url' => $dataUri,
+            'date' => $date,
         ]);
         
         // Load HTML to Dompdf
@@ -190,7 +191,7 @@ class VisitorController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("qrcode.pdf", [
+        $dompdf->stream("qrcode_$date.pdf", [
             "Attachment" => true
         ]);
         return $this->redirectToRoute("/visitor/qrcode");
