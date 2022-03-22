@@ -43,6 +43,7 @@
 								<span class="fa fa-home mr-3"></span>
 								Accueil</a>
 						</li>
+						{% if is_granted('ROLE_SUPERADMIN') %}
 						<hr>
 						<h6 class="text-white text-center">Gérez accès</h6>
 						<hr>
@@ -74,29 +75,7 @@
 								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
 								Gestion repas</a>
 						</li>
-						{# <li>
-													<a href="/pin/1/edit">
-														<span class="fa fa-gears mr-3"></span>
-														Code Pin</a>
-												</li>
-												<li>
-													<a href="/table">
-														<span class="fa fa-user mr-3"></span>
-														Avis</a>
-												</li>
-												<li>
-													<a href="/user">
-														<span class="fa fa-briefcase mr-3"></span>
-														Ajouter Utilisateur</a>
-												</li>
-												 <li>
-																				              <a href=""><span class="fa fa-briefcase mr-3"></span> Ajouter Champs Avis</a>
-																					          </li> 
-												<li>
-													<a href="/graph/dashboard">
-														<span class="fa fa-sticky-note mr-3"></span>
-														Graphique</a>
-												</li> #}
+						{% endif %}
 					</ul>
 
 

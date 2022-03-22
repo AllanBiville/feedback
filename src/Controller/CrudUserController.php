@@ -5,16 +5,24 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
+ * @Security("is_granted('ROLE_SUPERADMIN')")
  * @Route("/admin/user")
  */
 class CrudUserController extends AbstractController
 {
+    private $passwordEncoder;
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
     /**
      * @Route("/", name="app_crud_user_index", methods={"GET"})
      */
@@ -35,6 +43,9 @@ class CrudUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainpwd = $user->getPassword();
+            $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
+            $user->setPassword($encoded);
             $userRepository->add($user);
             return $this->redirectToRoute('app_crud_user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -54,6 +65,9 @@ class CrudUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainpwd = $user->getPassword();
+            $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
+            $user->setPassword($encoded);
             $userRepository->add($user);
             return $this->redirectToRoute('app_crud_user_index', [], Response::HTTP_SEE_OTHER);
         }
