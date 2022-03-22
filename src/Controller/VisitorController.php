@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Form\CodePinType;
@@ -173,8 +175,9 @@ class VisitorController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
         
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('visitor/qrcode.html.twig', [
-            'title' => "Welcome to our PDF Test"
+        $html = $this->renderView('visitor/qrcodepdf.html.twig', [
+            'title' => "Welcome to our PDF Test",
+            'data_url' => $dataUri,
         ]);
         
         // Load HTML to Dompdf
@@ -190,6 +193,7 @@ class VisitorController extends AbstractController
         $dompdf->stream("qrcode.pdf", [
             "Attachment" => true
         ]);
+        return $this->redirectToRoute("/visitor/qrcode");
     }
 
 
