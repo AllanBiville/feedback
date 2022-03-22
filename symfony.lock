@@ -30,7 +30,7 @@
         "version": "1.5.2"
     },
     "doctrine/dbal": {
-        "version": "3.3.2"
+        "version": "3.3.3"
     },
     "doctrine/deprecations": {
         "version": "v0.5.3"
@@ -90,13 +90,16 @@
         "version": "3.4.1"
     },
     "doctrine/orm": {
-        "version": "2.11.1"
+        "version": "2.11.2"
     },
     "doctrine/persistence": {
-        "version": "2.3.0"
+        "version": "2.4.0"
     },
     "doctrine/sql-formatter": {
         "version": "1.1.2"
+    },
+    "dompdf/dompdf": {
+        "version": "v1.2.0"
     },
     "egulias/email-validator": {
         "version": "3.1.2"
@@ -117,7 +120,7 @@
         "version": "4.5.1"
     },
     "monolog/monolog": {
-        "version": "2.3.5"
+        "version": "2.4.0"
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
@@ -130,6 +133,12 @@
     },
     "phar-io/version": {
         "version": "3.2.1"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.4"
+    },
+    "phenx/php-svg-lib": {
+        "version": "0.4.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -147,7 +156,7 @@
         "version": "1.2.0"
     },
     "phpunit/php-code-coverage": {
-        "version": "9.2.14"
+        "version": "9.2.15"
     },
     "phpunit/php-file-iterator": {
         "version": "3.0.6"
@@ -189,6 +198,9 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.4.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -233,7 +245,7 @@
         "version": "3.0.3"
     },
     "sebastian/type": {
-        "version": "2.3.4"
+        "version": "3.0.0"
     },
     "sebastian/version": {
         "version": "3.0.2"
@@ -257,7 +269,7 @@
         "version": "v5.4.3"
     },
     "symfony/cache": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/cache-contracts": {
         "version": "v2.5.0"
@@ -293,16 +305,16 @@
         ]
     },
     "symfony/dependency-injection": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/deprecation-contracts": {
         "version": "v2.5.0"
     },
     "symfony/doctrine-bridge": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/dom-crawler": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/dotenv": {
         "version": "v5.4.5"
@@ -320,7 +332,7 @@
         "version": "v5.4.3"
     },
     "symfony/filesystem": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/finder": {
         "version": "v5.4.3"
@@ -366,10 +378,10 @@
         "version": "v2.5.0"
     },
     "symfony/http-foundation": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/http-kernel": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/intl": {
         "version": "v5.4.5"
@@ -480,7 +492,7 @@
         "version": "v5.4.3"
     },
     "symfony/proxy-manager-bridge": {
-        "version": "v5.4.3"
+        "version": "v5.4.6"
     },
     "symfony/routing": {
         "version": "5.4",
@@ -523,7 +535,7 @@
         "version": "v5.4.5"
     },
     "symfony/serializer": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/service-contracts": {
         "version": "v2.5.0"
@@ -579,10 +591,10 @@
         ]
     },
     "symfony/var-dumper": {
-        "version": "v5.4.5"
+        "version": "v5.4.6"
     },
     "symfony/var-exporter": {
-        "version": "v5.4.3"
+        "version": "v5.4.6"
     },
     "symfony/web-link": {
         "version": "v5.4.3"

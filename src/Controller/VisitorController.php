@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Form\CodePinType;
@@ -116,6 +118,86 @@ class VisitorController extends AbstractController
 
         ]);    
     }
+
+
+    /**
+     * @Route("/pdf", name="_pdf")
+     */
+    public function pdf(RequestStack $requestStack, QrcodeTokenRepository $qrCodeTokenRepository,EntityManagerInterface $manager,Request $request): Response
+    {
+        $session = $requestStack->getSession();
+        
+        
+        $date = date("d-m-y");
+        $req = $qrCodeTokenRepository->tokenExist($date);
+       
+        if ( $req != null){
+            // si token existe
+            $token = $req->getToken(); 
+        } else {
+            // si token existe pas
+            $token = bin2hex(random_bytes(50));
+            $qrCodeToken = new QrcodeToken();
+            $qrCodeToken->setDate($date);
+            $qrCodeToken->setToken($token);
+            $manager->persist($qrCodeToken);
+            $manager->flush();
+        }
+        
+        
+       
+       $ip = $request->server->get('SERVER_NAME');
+       
+       $url = 'https://'.$ip.'/visitor/form?token='.$token;
+       
+        $writer = new PngWriter();
+        $qrCode = QrCode::create($url)
+        ->setEncoding(new Encoding('UTF-8'))
+        ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+        ->setSize(500)
+        ->setMargin(10)
+        ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin())
+        ->setForegroundColor(new Color(0, 0, 0))
+        ->setBackgroundColor(new Color(255, 255, 255));
+
+        $logo = Logo::create('images/ndlp.jpg')
+        ->setResizeToWidth(50);
+
+        //$label = Label::create('Label')
+        //->setTextColor(new Color(255, 0, 0));
+
+        $result = $writer->write($qrCode, $logo);
+        $dataUri = $result->getDataUri();
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('visitor/qrcodepdf.html.twig', [
+            'title' => "Welcome to our PDF Test",
+            'data_url' => $dataUri,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("qrcode.pdf", [
+            "Attachment" => true
+        ]);
+        return $this->redirectToRoute("/visitor/qrcode");
+    }
+
+
+    
 
     /**
      * @Route("/form", name="_form")

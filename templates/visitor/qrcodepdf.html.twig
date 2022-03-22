@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html.twig' %}
 {% block title %}QRCode
 {% endblock %}
@@ -10,6 +8,5 @@
   }
 </style>
 	<img src="{{ data_url }}"/><br/>
-    <a class="btn btn-lg btn-danger" href="/">Déconnexion</a>
-    <a class="btn btn-lg btn-primary" href="/visitor/pdf">PDF QRcode</a>
+    <p>Scannez moi pour laisser un avis sur votre repas!</p>
 {% endblock %}
