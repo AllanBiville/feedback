@@ -45,16 +45,22 @@ class TypesCategoriesRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAll($all = true)
+    public function findAllActive()
     {
         $qb = $this->createQueryBuilder('t');
-        if ($all) {
-            $qb->andWhere('t.statut = :statut');
-            $qb->setParameter('statut', $all);
+        $qb->andWhere('t.statut = :val');
+        $qb->setParameter('val', 1);
             $qb->orderBy('t.id', 'ASC');
-        }
+
         return $qb->getQuery()->getResult();
     }
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb->orderBy('t.statut', 'DESC');
+        return $qb->getQuery()->getResult();
+    }
+
 
     // /**
     //  * @return TypesCategories[] Returns an array of TypesCategories objects

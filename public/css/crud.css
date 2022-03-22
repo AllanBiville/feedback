@@ -24,11 +24,6 @@ body {
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: 0.3s ease;
-    /* Title */
-    /* Inputs */
-    /* Button */
-    /* Footer */
-    /* Alt Card */
 }
 
 .card:first-child {
@@ -153,4 +148,17 @@ body {
 }
 tr td {
     font-size:16px;
+}
+
+/* Categorie Statut */
+.status-bouton {
+    float: right;
+  }
+  .status-th {
+    width: 150px;
+  }
+/* Bouton CRUD*/
+td a, td button {
+	width:100px;
+	display:inline-block;
 }

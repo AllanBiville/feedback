@@ -157,7 +157,7 @@ class VisitorController extends AbstractController
         }
         return $this->render('visitor/form.html.twig', [
             'controller_name' => 'VisitorController',
-            'categories' => $typesCategoriesRepository->findAll(),
+            'categories' => $typesCategoriesRepository->findAllActive(),
             'form' => $form->createView(),
         ]);
     }
