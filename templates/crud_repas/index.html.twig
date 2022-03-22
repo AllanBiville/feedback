@@ -1,35 +1,34 @@
+
 {% extends 'admin.html.twig' %}
 
-{% block title %}Utilisateurs
+{% block title %}Repas
 {% endblock %}
 
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/crud.css') }}">
 <div class="container-fluid">
-	<h1 class="text-center mb-4">Affichage des utilisateurs</h1>
-		<a  class="btn btn-success" href="{{ path('app_crud_user_new') }}">Créer utilisateur</a>
+	<h1 class="text-center mb-4">Affichage des repas</h1>
+		<a  class="btn btn-success" href="{{ path('app_crud_repas_new') }}">Créer repas</a>
 		<br/><br/>
 	<div class="table-containeur mx-auto">
 		<table class="table table-responsive-xl table table-borderless table-hover">
 			<thead>
 				<tr class="tr-index">
 					<th scope="col">ID</th>
-					<th scope="col">Nom d'utilisateur</th>
-					<th scope="col">Role</th>
+					<th scope="col">Repas</th>
 					<th scope="col">Actions</th>
 
 				</tr>
 			</thead>
 			<tbody>
-				{% for user in users %}
+				{% for types_repa in types_repas %}
 					<tr>
-						<td>{{ user.id }}</td>
-						<td>{{ user.username }}</td>
-						 <td>{{ user.roles ? user.roles|json_encode : '' }}</td> 
+						<td>{{ types_repa.id }}</td>
+						<td>{{ types_repa.name }}</td>
 						<td>
-							<a class="btn btn-warning" href="{{ path('app_crud_user_edit', {'id': user.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
+							<a class="btn btn-warning" href="{{ path('app_crud_repas_edit', {'id': types_repa.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
 						<br/>
-						{{ include('crud_user/_delete_form.html.twig') }}
+						{{ include('crud_repas/_delete_form.html.twig') }}
                         </td>
 					</tr>
 				{% else %}
