@@ -1,0 +1,17 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Commentaire{% endblock %}
+
+{% block body %}    
+				{% for commentaire in commentaires %}
+					<tr>
+						<td>{{ commentaire.date }}</td>
+						<td>{{ commentaire.commentary }}</td>
+                        <td>{{ commentaire.users }}</td>
+                        </tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucune données disponibles !</td>
+					</tr>
+				{% endfor %}
+{% endblock %}
