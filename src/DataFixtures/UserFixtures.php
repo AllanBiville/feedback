@@ -24,5 +24,13 @@ class UserFixtures extends Fixture
         $admin->setPassword($password);
         $manager->persist($admin);
         $manager->flush();
+
+        $superadmin = new User();
+        $superadmin->setUsername('superadmin');
+        $superadmin->setRoles(array('ROLE_SUPERADMIN'));
+        $password = $this->passwordEncoder->encodePassword($superadmin, 'admin');
+        $superadmin->setPassword($password);
+        $manager->persist($superadmin);
+        $manager->flush();
     }
 }

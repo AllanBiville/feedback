@@ -9,10 +9,11 @@
 		<link rel="stylesheet" href="{{ asset('css/global.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
-       
+		<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link
+		rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+
 
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
@@ -25,7 +26,7 @@
 	</head>
 	<body>
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="">
+			<nav id="sidebar" class="active">
 				<div class="custom-menu">
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
 						<i class="fa fa-bars"></i>
@@ -42,29 +43,39 @@
 								<span class="fa fa-home mr-3"></span>
 								Accueil</a>
 						</li>
-						{# <li>
-							<a href="/pin/1/edit">
-								<span class="fa fa-gears mr-3"></span>
-								Code Pin</a>
+						{% if is_granted('ROLE_SUPERADMIN') %}
+						<hr>
+						<h6 class="text-white text-center">Gérez accès</h6>
+						<hr>
+						<li>
+							<a href="/admin/pin/1/edit">
+								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+								Gestion PIN (QrCode)</a>
 						</li>
 						<li>
-							<a href="/table">
-								<span class="fa fa-user mr-3"></span>
-								Avis</a>
+							<a href="/admin/user">
+								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+								Gestion utilisateurs</a>
+						</li>
+						<hr>
+						<h6 class="text-white text-center">Gérez formulaire</h6>
+						<hr> 
+						<li>
+							<a href="/admin/categories">
+								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+								Gestion catégories</a>
 						</li>
 						<li>
-							<a href="/user">
-								<span class="fa fa-briefcase mr-3"></span>
-								Ajouter Utilisateur</a>
+							<a href="/admin/users">
+								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+								Gestion classes</a>
 						</li>
-						 <li>
-														              <a href=""><span class="fa fa-briefcase mr-3"></span> Ajouter Champs Avis</a>
-															          </li> 
-						<li>
-							<a href="/graph/dashboard">
-								<span class="fa fa-sticky-note mr-3"></span>
-								Graphique</a>
-						</li> #}
+												<li>
+							<a href="/admin/repas">
+								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+								Gestion repas</a>
+						</li>
+						{% endif %}
 					</ul>
 
 
@@ -73,7 +84,7 @@
 							Copyright &copy;<script>
 								document.write(new Date().getFullYear());
 							</script>
-                            <br/>
+							<br/>
 							All rights reserved
 						</p>
 					</div>
@@ -83,15 +94,12 @@
 				</div>
 			</nav>
 
-	<div id="content" class="text-center p-4 p-md-5 pt-5">
-
-	
-            {% block body %}{% endblock %}
-            </div>
-		<script src="{{asset('javascript/jquery.min.js') }}"></script>
-		<script src="{{asset('javascript/popper.js') }}"></script>
-		<script src="{{asset('javascript/bootstrap.min.js') }}"></script>
-		<script src="{{asset('javascript/main.js') }}"></script>
-</div>
-	</body>
-</html>
+			<div id="content" class="text-center p-4 p-md-5 pt-5"> {% block body %}{% endblock %}
+				</div>
+				<script src="{{asset('javascript/jquery.min.js') }}"></script>
+				<script src="{{asset('javascript/popper.js') }}"></script>
+				<script src="{{asset('javascript/bootstrap.min.js') }}"></script>
+				<script src="{{asset('javascript/main.js') }}"></script>
+			</div>
+		</body>
+	</html>

@@ -1,0 +1,164 @@
+body {
+    background: #e9e9e9;
+    color: #666666;
+
+}
+/* Container */
+.container {
+    position: relative;
+    width: 60%;
+    margin: 150px auto 100px;
+    min-width: 300px;
+    font-family: "RobotoDraft", "Roboto", sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Card */
+.card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 60px 0 40px 0;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 0.3s ease;
+}
+
+.card:first-child {
+    background: #fafafa;
+    height: 10px;
+    border-radius: 5px 5px 0 0;
+    margin: 0 10px;
+    padding: 0;
+}
+
+.card .title {
+    position: relative;
+    z-index: 1;
+    border-left: 5px solid #007BFF;
+    margin: 0 0 60px;
+    padding: 10px 0 10px 50px;
+    color: #007BFF;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card .input-container {
+    position: relative;
+    margin: 0 60px 50px;
+}
+
+.card .input-container input {
+    outline: none;
+    z-index: 1;
+    position: relative;
+    background: none;
+    width: 100%;
+    height: 60px;
+    border: 0;
+    color: #212121;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.card .input-container input:focus~.bar:before, .card .input-container input:focus~.bar:after {
+    width: 50%;
+}
+
+.card .input-container input:valid~label {
+    color: #9d9d9d;
+    transform: translate(-12%, -50%) scale(0.75);
+}
+
+.card .input-container label {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    color: #757575;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 60px;
+    transition: 0.2s ease;
+    color: #9d9d9d;
+    transform: translate(-12%, -50%) scale(0.75);
+}
+
+.card .input-container .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #757575;
+    width: 100%;
+    height: 1px;
+}
+
+.card .input-container .bar:before, .card .input-container .bar:after {
+    content: "";
+    position: absolute;
+    background: #007BFF;
+    width: 0;
+    height: 2px;
+    transition: 0.2s ease;
+}
+
+.card .input-container .bar:before {
+    left: 50%;
+}
+
+.card .input-container .bar:after {
+    right: 50%;
+}
+
+.card .button-container {
+    margin: 0 60px;
+    text-align: center;
+}
+
+.card .button-container button {
+    outline: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    background: #007BFF;
+    width: 240px;
+    color:white;
+    border: 2px solid #e3e3e3;
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+/* INDEX */
+.table-containeur{
+    width:80%;
+}
+.table .tr-index{
+    background-color:#007BFF;
+    color:white;
+    height:40px;
+    font-weight:bolder;
+    font-size:20px;
+}
+tr td {
+    font-size:16px;
+}
+
+/* Categorie Statut */
+.status-bouton {
+    float: right;
+  }
+  .status-th {
+    width: 150px;
+  }
+/* Bouton CRUD*/
+td a, td button {
+	width:100px;
+	display:inline-block;
+}

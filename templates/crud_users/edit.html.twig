@@ -1,0 +1,15 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier classe{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+    <div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Modifier classe <br/>({{types_user.name}})</h1>
+    {{ include('crud_users/_form.html.twig', {'button_label': 'Modifier'}) }}
+  </div>
+</div>
+{% endblock %}

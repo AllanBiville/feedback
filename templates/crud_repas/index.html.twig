@@ -1,0 +1,45 @@
+
+{% extends 'admin.html.twig' %}
+
+{% block title %}Repas
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+<div class="container-fluid">
+	<h1 class="text-center mb-4">Affichage des repas</h1>
+		<a  class="btn btn-success" href="{{ path('app_crud_repas_new') }}">Créer repas</a>
+		<br/><br/>
+	<div class="table-containeur mx-auto">
+		<table class="table table-responsive-xl table table-borderless table-hover">
+			<thead>
+				<tr class="tr-index">
+					<th scope="col">ID</th>
+					<th scope="col">Repas</th>
+					<th scope="col">Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for types_repa in types_repas %}
+					<tr>
+						<td>{{ types_repa.id }}</td>
+						<td>{{ types_repa.name }}</td>
+						<td>
+							<a class="btn btn-warning" href="{{ path('app_crud_repas_edit', {'id': types_repa.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
+						<br/>
+						{{ include('crud_repas/_delete_form.html.twig') }}
+                        </td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucune données disponibles !</td>
+					</tr>
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+	</div>
+	</div>
+{% endblock %}

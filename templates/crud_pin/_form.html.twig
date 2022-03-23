@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+      <div class="input-container">
+        {{ form_widget(form.pin) }}
+        <label for="#{label}">Code pin</label>
+        <div class="bar"></div>
+      </div>
+      
+      <div class="button-container">
+        <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+      </div>
+     
+    {{ form_end(form) }}
+
+      
+

@@ -1,0 +1,16 @@
+{{ form_start(form) }}  
+    <div class="input-container">
+        {{ form_widget(form.shortname) }}
+        <label for="#{label}">Nom court (1 mot)</label>
+        <div class="bar"></div>
+      </div>
+          <div class="input-container">
+        {{ form_widget(form.longname) }}
+        <label for="#{label}">Nom long (Plusieurs mots)</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+      </div>
+     
+    {{ form_end(form) }}

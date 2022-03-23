@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Créer repas{% endblock %}
+
+{% block body %}
+   <link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+    <div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Créer repas</h1>
+    {{ include('crud_repas/_form.html.twig', {'button_label': 'Créer'}) }}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+<div class="container-fluid">
+	<h1 class="text-center mb-4">Affichage des catégories</h1>
+		<a  class="btn btn-success" href="{{ path('app_crud_categories_new') }}">Créer catégorie</a>
+		<br/><br/>
+	<div class="table-containeur mx-auto">
+		<table class="table table-responsive-xl table table-borderless table-hover">
+			<thead>
+				<tr class="tr-index">
+					<th scope="col">ID</th>
+					<th scope="col">Nom court</th>
+                    <th scope="col">Nom long</th>
+                    <th class='status-th' scope="col">Statut</th>
+					<th scope="col">Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for types_category in types_categories %}
+					<tr>
+						<td>{{ types_category.id }}</td>
+						<td>{{ types_category.shortname }}</td>
+                        <td>{{ types_category.longname }}</td>
+                        <td>{{ types_category.statut ? 'Activé' : 'Désactivé' }}
+							<a class='status-bouton btn mb-1' href='{{ path('app_crud_changestatus', {'id': types_category.id}) }}'>
+								<i class="fa fa-refresh" aria-hidden="true"></i>
+							</a>
+                            </td>
+						<td>
+							<a class="btn btn-warning" href="{{ path('app_crud_categories_edit', {'id': types_category.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
+                        </td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucune données disponibles !</td>
+					</tr>
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+	</div>
+	</div>
+{% endblock %}

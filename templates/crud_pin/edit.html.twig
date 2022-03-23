@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier PIN{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+    <div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Modifier code PIN (Qrcode)</h1>
+    {{ include('crud_pin/_form.html.twig', {'button_label': 'Modifier'}) }}
+  </div>
+</div>
+{% endblock %}
