@@ -1,17 +1,53 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Commentaire{% endblock %}
-
-{% block body %}    
-				{% for commentaire in commentaires %}
-					<tr>
-						<td>{{ commentaire.date }}</td>
-						<td>{{ commentaire.commentary }}</td>
-                        <td>{{ commentaire.users }}</td>
-                        </tr>
-				{% else %}
-					<tr>
-						<td colspan="5">Aucune données disponibles !</td>
-					</tr>
-				{% endfor %}
+{% block title %}Commentaire
 {% endblock %}
+
+{% block body %}
+	<style>
+
+
+		.comment-img {
+			width: 3rem;
+			height: 3rem;
+		}
+		.comment-replies .comment-img {
+			width: 1.75rem;
+			height: 1.75rem;
+		}
+	</style>
+				
+<div class="container-xl py-4">
+		<div class="m-auto">
+			<div class="bg-white rounded-3 shadow-sm p-4">
+			<h4 class="mb-4">Les derniers commentaires...</h4>
+				<div class="py-3">
+				<hr>
+					{% for commentaire in commentaires %}
+
+
+						<div class="d-flex comment">
+							<img class="rounded-circle comment-img" src="/images/commentaire.png"/>
+							<div class="flex-grow-1 ms-3">
+								<div class="mb-1">
+									<a href="#" class="fw-bold link-dark me-1">{{ commentaire.name }}</a>
+									<span class="text-muted text-nowrap">{{ commentaire.date }}</span>
+								</div>
+								<div class="mb-2">{{ commentaire.commentary }}</div>
+								<a class="fw-bold d-flex align-items-center" href="#">
+									<i class="zmdi zmdi-chevron-down fs-4 me-3"></i>
+								</a>
+							</div>
+						</div>
+<hr>
+					{% else %}
+						<tr>
+							<td colspan="5">Aucune données disponibles !</td>
+						</tr>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+
+	{% endblock %}
