@@ -60,6 +60,20 @@ class AvisRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+    public function TauxDeVote($value)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT t.id, t.name, count(t.name) as count FROM avis a,types_users t
+            where a.users_id = t.id
+            AND t.id = :value
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['value' => $value]);
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
     // /**
     //  * @return Avis[] Returns an array of Avis objects
     //  */
