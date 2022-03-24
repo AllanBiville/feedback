@@ -45,6 +45,21 @@ class AvisRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllCommentary()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT a.date,a.commentary, t.name FROM avis a,types_users t
+            where a.users_id = t.id
+            order by a.date ASC
+
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
     // /**
     //  * @return Avis[] Returns an array of Avis objects
     //  */
