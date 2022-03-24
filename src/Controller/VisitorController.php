@@ -223,13 +223,14 @@ class VisitorController extends AbstractController
 
             $avis->setDate(date('d-m-Y'));
             
-            foreach ($typesCategoriesRepository->findAll() as $tc){
+            foreach ($typesCategoriesRepository->findAllActive() as $tc){
                 $note = $request->get($tc->getId());
                 $atc = new AvisTypesCategories();
                 $atc->setAvis($avis);
                 $atc->setTypesCategories($tc);
                 $atc->setNote($note);
                 $entityManager->persist($atc);
+                dump($note);
             }
 
             $entityManager->persist($avis);
