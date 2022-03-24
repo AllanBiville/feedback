@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\GraphType;
+use App\Repository\AvisRepository;
 use App\Repository\TypesCategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,13 +27,13 @@ class AdminController extends AbstractController
     /**
      * @Route("/graph", name="app_admin_graph")
      */
-    public function graph(Request $request, TypesCategoriesRepository $typesCategoriesRepository): Response
+    public function graph(Request $request, TypesCategoriesRepository $typesCategoriesRepository, AvisRepository $avisRepository): Response
     {
         $form = $this->createForm(GraphType::class);
 
         $form->handleRequest($request);
-        $startdate = date('Y/m/d');
-        $enddate = date('Y/m/d');
+        $startdate = date('Y-m-d');
+        $enddate = date('Y-m-d');
         $repas = 'Midi';
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,29 +50,47 @@ class AdminController extends AbstractController
             }
         }
 
-        $data = [
-            'labels' => ['1 étoiles','2 étoiles','3 étoiles','4 étoiles','5 étoiles'],
-            'datasets' => [
-                [
-                    'label' => 'Gout !',
-                    'backgroundColor' => [
-                        'rgba(255,1,0)',
-                        'rgba(255, 71, 9)',
-                        'rgba(255, 174, 9)',
-                        'rgba(166, 217, 79)',
-                        'rgba(82, 192, 0)'],
-                    'borderColor' => [
-                        'rgba(255, 0, 0)',
-                        'rgba(255, 71, 9)',
-                        'rgba(255, 174, 9)',
-                        'rgba(166, 217, 79)',
-                        'rgba(82, 192, 0)'],
-                    'data' => [
-                        12, 19, 3, 5, 2
+        $categoriesFromDatabase = $typesCategoriesRepository->findAll();
+        $categoriesWithdata = array();
+        foreach ($categoriesFromDatabase as $categorie) {
+            $typeCategorieEtoileNotes = array();
+            for ($i=1; $i <= 5 ; $i++) { 
+                $typeCategorieEtoileNote = $avisRepository->countData($i, $categorie->getShortName(), $startdate, $enddate);
+                if (empty($typeCategorieEtoileNote)) {
+                    // dump("accueil1 (" . $i .") est vide ");
+                    $typeCategorieEtoileNotes[] = 0;
+                } else {
+                    // dump("accueil1 (" . $i .") = " . print_r($typeCategorieEtoileNote[0], true));
+                    $typeCategorieEtoileNotes[] = $typeCategorieEtoileNote[0]['count'];
+                }                               
+            };
+            $data = json_encode([
+                'labels' => ['1 étoiles','2 étoiles','3 étoiles','4 étoiles','5 étoiles'],
+                'datasets' => [
+                    [
+                        'label2' => $categorie->getShortName(),
+                        'backgroundColor' => [
+                            'rgba(255,1,0)',
+                            'rgba(255, 71, 9)',
+                            'rgba(255, 174, 9)',
+                            'rgba(166, 217, 79)',
+                            'rgba(82, 192, 0)'],
+                        'borderColor' => [
+                            'rgba(255, 0, 0)',
+                            'rgba(255, 71, 9)',
+                            'rgba(255, 174, 9)',
+                            'rgba(166, 217, 79)',
+                            'rgba(82, 192, 0)'],
+                        'data' => $typeCategorieEtoileNotes,
                     ],
                 ],
-            ],
-        ];
+            ]);  
+            $categorie->setData($data);
+            $categoriesWithdata[] = $categorie;
+        };
+
+        dump("data = '" . print_r($categoriesWithdata, true) . "'");
+
 
         return $this->render('admin/graph.html.twig', [
             'controller_name' => 'AdminController',
@@ -79,8 +98,7 @@ class AdminController extends AbstractController
             'startDate' => $startdate,
             'endDate' => $enddate,
             'repas' => $repas,
-            'data' => json_encode($data),
-            'categories' => $typesCategoriesRepository->findAll(),
+            'categories' => $categoriesWithdata,
         ]);
     }
 }

@@ -67,11 +67,10 @@ margin:auto;
 
 
 <script>
-
 const ctx{{categorie.id}} = document.getElementById('{{categorie.id}}').getContext('2d');
 const myChart{{categorie.id}} = new Chart(ctx{{categorie.id}}, {
     type: 'pie',
-    data: {{ data|raw }},
+    data: {{ categorie.data|raw }},
     options: {
       plugins: {
         legend: {
