@@ -55,7 +55,6 @@ class AvisRepository extends ServiceEntityRepository
             order by a.date ASC
 
             ';
-            // order by..
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         // returns an array of arrays (i.e. a raw data set)
