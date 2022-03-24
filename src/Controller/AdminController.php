@@ -43,35 +43,6 @@ class AdminController extends AbstractController
             $countParClasses = $avisRepository->TauxDeVote($tu->getId());
             $tableauCounts[] = $countParClasses[0];
         }
-
-
-        $tableauCounts = json_encode([
-            'labels' => ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            'label' => '# of Votes',
-            'datasets' => [
-                [
-                    'backgroundColor' => [
-                        'rgba(255,1,0)',
-                        'rgba(255, 71, 9)',
-                        'rgba(255, 174, 9)',
-                        'rgba(166, 217, 79)',
-                        'rgba(82, 192, 0)'],
-                    'borderColor' => [
-                        'rgba(255, 0, 0)',
-                        'rgba(255, 71, 9)',
-                        'rgba(255, 174, 9)',
-                        'rgba(166, 217, 79)',
-                        'rgba(82, 192, 0)'],
-                    'data' => [
-                        12, 19, 3, 5, 2, 3
-                    ],
-                ],
-            ],
-        ]);  
-
-    
-
-
         return $this->render('admin/tauxdevote.html.twig', [
             'tableauCounts' => $tableauCounts,
             
