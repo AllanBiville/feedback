@@ -155,7 +155,7 @@ tr td {
     float: right;
   }
   .status-th {
-    width: 150px;
+    width: 200px;
   }
 /* Bouton CRUD*/
 td a, td button {
