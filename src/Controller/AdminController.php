@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
 use App\Form\GraphType;
 use App\Repository\AvisRepository;
 use App\Repository\TypesCategoriesRepository;
@@ -89,9 +90,6 @@ class AdminController extends AbstractController
             $categoriesWithdata[] = $categorie;
         };
 
-        dump("data = '" . print_r($categoriesWithdata, true) . "'");
-
-
         return $this->render('admin/graph.html.twig', [
             'controller_name' => 'AdminController',
             'form' => $form->createView(),
@@ -100,5 +98,25 @@ class AdminController extends AbstractController
             'repas' => $repas,
             'categories' => $categoriesWithdata,
         ]);
+
+        $dompdf = new Dompdf();
+
+        $contents = $this->renderView('admin/graph.html.twig', [
+            'form' => $form->createView(),
+            'startDate' => $startdate,
+            'endDate' => $enddate,
+            'repas' => $repas,
+            'categories' => $categoriesWithdata,
+        ]);
+
+        $dompdf->loadHtml($contents);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        $fichier= 'Avis.pdf';
+
+        return $dompdf->stream($fichier);
     }
 }

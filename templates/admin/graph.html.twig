@@ -65,7 +65,6 @@ margin:auto;
        {% endif %}
 
 
-
 <script>
 const ctx{{categorie.id}} = document.getElementById('{{categorie.id}}').getContext('2d');
 const myChart{{categorie.id}} = new Chart(ctx{{categorie.id}}, {
@@ -116,43 +115,45 @@ const myChart{{categorie.id}} = new Chart(ctx{{categorie.id}}, {
   plugins: [bgColor, ChartDataLabels],
 });
 
-    {# function downloadPDF(){
-    const Gout = document.getElementById('Gout');
-    const GoutImage = Gout.toDataURL('image/jpeg', 1.0);
-
-    const Diversite = document.getElementById('Diversite');
-    const DiversiteImage = Diversite.toDataURL('image/jpeg', 1.0);
-
-    const Chaleur = document.getElementById('Chaleur');
-    const ChaleurImage = Chaleur.toDataURL('image/jpeg', 1.0);
-
-    const Disponibilite = document.getElementById('Disponibilite');
-    const DisponibiliteImage = Disponibilite.toDataURL('image/jpeg', 1.0);
-
-    const Proprete = document.getElementById('Proprete');
-    const PropreteImage = Proprete.toDataURL('image/jpeg', 1.0);
-
-    const Accueil = document.getElementById('Accueil');
-    const AccueilImage = Accueil.toDataURL('image/jpeg', 1.0);
-
-    let pdf = new jsPDF('portrait');
-    pdf.setFontSize(20);
-
-    pdf.text(15,15, "Les avis sur le self du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} ")
-    pdf.addImage(GoutImage, 'JPEG', 50, 20, 110, 105);
-    pdf.addImage(DiversiteImage, 'JPEG', 50, 160, 110, 105);
-    pdf.addPage();
-    pdf.addImage(ChaleurImage, 'JPEG', 50, 20, 110, 105);
-    pdf.addImage(DisponibiliteImage, 'JPEG', 50, 160, 110, 105);
-    pdf.addPage();
-    pdf.addImage(PropreteImage, 'JPEG', 50, 20, 110, 105);
-    pdf.addImage(AccueilImage, 'JPEG', 50, 160, 110, 105);
-
-    pdf.save('Graphique_Feedback_du_{{startDate|date("d/m/Y")}}_au_{{endDate|date("d/m/Y")}}.pdf');
-    } #}
 </script>
-{% endfor %}
 
+{% endfor %}
     </table>
+
+ <script>
+
+
+function downloadPDF(){
+      let pdf = new jsPDF('portrait');
+      pdf.setFontSize(20);
+
+      pdf.text(15,15, "Les avis sur le self du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} ")
+
+      {% set i = 0 %}
+      {% for categorie in categories %}
+
+      const Categorie{{categorie.id}} = document.getElementById('{{categorie.id}}');
+      const CategorieImage{{categorie.id}} = Categorie{{categorie.id}}.toDataURL('image/jpeg', 1.0);
+
+      {% set i = i + 1 %}
+
+        {% if i%2 != 0 %}
+          pdf.addImage(CategorieImage{{categorie.id}}, 'JPEG', 50, 20, 110, 105);
+
+        {% else %}
+
+          pdf.addImage(CategorieImage{{categorie.id}}, 'JPEG', 50, 160, 110, 105);
+
+          {% if categories|length != i %}
+          pdf.addPage();
+          {% endif %}
+          
+        {% endif %}
+      {% endfor %}
+
+      pdf.save('Graphique_Feedback_du_{{startDate|date("d/m/Y")}}_au_{{endDate|date("d/m/Y")}}.pdf');
+    }
+</script> 
+
 {% endblock %}
 
