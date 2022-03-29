@@ -21,9 +21,6 @@ class TestRouteLoginTest extends WebTestCase
         $client = $this->logIn('admin', 'ROLE_ADMIN');
         $crawler = $client->request('GET', '/admin/graph');
 
-        $firewallName = 'main';
-        $firewallContext = 'main';
-
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
         $this->assertSelectorTextContains('h2', 'Graphique');   
     }

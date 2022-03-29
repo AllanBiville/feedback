@@ -191,10 +191,11 @@ class VisitorController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("qrcode_$date.pdf", [
-            "Attachment" => true
-        ]);
-        return $this->redirectToRoute("/visitor/qrcode");
+		return new Response($dompdf->stream("qrcode_$date.pdf", 
+		    ["Attachment" => true]), 
+			Response::HTTP_OK, 
+			['content-type' => 'application/pdf']
+		);
     }
 
 
