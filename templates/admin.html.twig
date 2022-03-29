@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
 		<title>Panel Administrateur -
 			{% block title %}{% endblock %}
@@ -40,51 +42,56 @@
 					<ul class="list-unstyled components mb-5">
 						<li class="active">
 							<a href="/admin">
-								<span class="fa fa-home mr-3"></span>
+								<span class="fas fa-home mr-3"></span>
 								Accueil</a>
 						</li>
-						<li class="active">
+						<li>
+							<a href="/admin/graph">
+								<span class="fas fa-chart-pie mr-3"></span>
+								Graphique</a>
+						</li>
+						<li>
 							<a href="/admin/commentaire">
-							<i class="fa fa-comment mr-3" aria-hidden="true"></i>
+								<i class="fa fa-comment mr-3" aria-hidden="true"></i>
 								Commentaire</a>
 						</li>
 						<li>
 							<a href="/admin/tauxDeVote">
-							<i class="fa fa-signal mr-3" aria-hidden="true"></i>
+								<i class="fa fa-signal mr-3" aria-hidden="true"></i>
 								Taux de vote</a>
 						</li>
 						{% if is_granted('ROLE_SUPERADMIN') %}
-						<hr>
-						<h6 class="text-white text-center">Gérez accès</h6>
-						<hr>
-						<li>
-							<a href="/admin/pin/1/edit">
-								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
-								Gestion PIN (QrCode)</a>
-						</li>
-						<li>
-							<a href="/admin/user">
-								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
-								Gestion utilisateurs</a>
-						</li>
-						<hr>
-						<h6 class="text-white text-center">Gérez formulaire</h6>
-						<hr> 
-						<li>
-							<a href="/admin/categories">
-								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
-								Gestion catégories</a>
-						</li>
-						<li>
-							<a href="/admin/users">
-								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
-								Gestion classes</a>
-						</li>
-												<li>
-							<a href="/admin/repas">
-								<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
-								Gestion repas</a>
-						</li>
+							<hr>
+							<h6 class="text-white text-center">Gérez accès</h6>
+							<hr>
+							<li>
+								<a href="/admin/pin/1/edit">
+									<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+									Gestion PIN (QrCode)</a>
+							</li>
+							<li>
+								<a href="/admin/user">
+									<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+									Gestion utilisateurs</a>
+							</li>
+							<hr>
+							<h6 class="text-white text-center">Gérez formulaire</h6>
+							<hr>
+							<li>
+								<a href="/admin/categories">
+									<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+									Gestion catégories</a>
+							</li>
+							<li>
+								<a href="/admin/users">
+									<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+									Gestion classes</a>
+							</li>
+							<li>
+								<a href="/admin/repas">
+									<i class="fa fa-wrench mr-3" aria-hidden="true"></i>
+									Gestion repas</a>
+							</li>
 						{% endif %}
 					</ul>
 
@@ -110,6 +117,7 @@
 				<script src="{{asset('javascript/popper.js') }}"></script>
 				<script src="{{asset('javascript/bootstrap.min.js') }}"></script>
 				<script src="{{asset('javascript/main.js') }}"></script>
+				<script src="https://kit.fontawesome.com/e838603ccd.js" crossorigin="anonymous"></script>
 			</div>
 		</body>
 	</html>

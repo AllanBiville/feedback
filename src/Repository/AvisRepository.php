@@ -2,11 +2,12 @@
 
 namespace App\Repository;
 
+use PDO;
 use App\Entity\Avis;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Avis|null find($id, $lockMode = null, $lockVersion = null)
@@ -74,6 +75,39 @@ class AvisRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+    public function countData($value, $type, $startDate=null, $endDate=null)
+    {
+        
+        if (!isset($startDate)) {
+            $startDate = date('Y-m-d');
+        }
+        if (!isset($endDate)) {
+            $endDate = date('Y-m-d');
+        }
+                
+        $entityManager = $this->getEntityManager()->getConnection();
+        
+        $sql = '
+            SELECT count(*) as count
+            FROM avis a, avis_types_categories, types_categories
+            WHERE a.id = avis_types_categories.avis_id
+            AND avis_types_categories.types_categories_id = types_categories.id
+            AND avis_types_categories.note = :value
+            AND types_categories.shortname = :type
+            AND a.date >= :date_repas_start AND a.date <= :date_repas_end
+        ';
+
+        $stmt = $entityManager->prepare($sql);
+
+        $resultSet = $stmt->executeQuery(['value' => $value,
+                                         'type' => $type,
+                                         'date_repas_start' => $startDate,
+                                         'date_repas_end' => $endDate]);
+
+        return $resultSet->fetchAllAssociative();
+ 
+    }
+
     // /**
     //  * @return Avis[] Returns an array of Avis objects
     //  */

@@ -191,10 +191,11 @@ class VisitorController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("qrcode_$date.pdf", [
-            "Attachment" => true
-        ]);
-        return $this->redirectToRoute("/visitor/qrcode");
+		return new Response($dompdf->stream("qrcode_$date.pdf", 
+		    ["Attachment" => true]), 
+			Response::HTTP_OK, 
+			['content-type' => 'application/pdf']
+		);
     }
 
 
@@ -223,13 +224,14 @@ class VisitorController extends AbstractController
 
             $avis->setDate(date('d-m-Y'));
             
-            foreach ($typesCategoriesRepository->findAll() as $tc){
+            foreach ($typesCategoriesRepository->findAllActive() as $tc){
                 $note = $request->get($tc->getId());
                 $atc = new AvisTypesCategories();
                 $atc->setAvis($avis);
                 $atc->setTypesCategories($tc);
                 $atc->setNote($note);
                 $entityManager->persist($atc);
+                dump($note);
             }
 
             $entityManager->persist($avis);

@@ -1,0 +1,159 @@
+{% extends 'admin.html.twig' %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.js"></script>  {#ne pas oublier de dl les fichier et les mettre dans public#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+const bgColor = {
+    id: 'bgColor',
+    beforeDraw: (chart, options) => {
+      const { ctx, width, height} = chart;
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, width, height)
+      ctx.restore();
+    }
+}
+</script>
+{% endblock %}
+
+{% block title %}Graphique{% endblock %}
+
+{% block body %}
+<style>
+.pie-chart{
+    width: 600px !important;
+    height: 600px !important;
+}
+table{
+margin:auto;
+}
+</style>
+    <h2>Graphique</h2>
+    <h2>Les avis du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} le {{repas}} </h2>
+
+    {{form_start(form)}}
+        Afficher du : {{form_widget(form.startDate)}} 
+        au {{form_widget(form.endDate)}}
+        le {{form_widget(form.repas)}}
+		{{form_widget(form.submit)}}
+    {{form_end(form)}}
+
+    <button class="btn btn-success" onclick="downloadPDF()">Version PDF</button>
+        
+    <table>
+    {% set i = 0 %}
+ {% for categorie in categories %}
+    {% set i = i + 1 %}
+       
+       {% if i%2 != 0 %}
+        <tr>
+            <td>
+       {% else %}
+            <td>
+       {% endif %}
+
+                <div class="pie-chart">
+                    <canvas id="{{categorie.id}}"></canvas>
+                </div><br>
+       {% if i%2 != 0 %}
+            </td>
+       {% else %}
+            </td>
+        </tr>
+       {% endif %}
+
+
+<script>
+const ctx{{categorie.id}} = document.getElementById('{{categorie.id}}').getContext('2d');
+const myChart{{categorie.id}} = new Chart(ctx{{categorie.id}}, {
+    type: 'pie',
+    data: {{ categorie.data|raw }},
+    options: {
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: '{{categorie.shortname}}',
+          font: {
+            size: 25
+          }
+        },
+        tooltip:{
+          enabled: false
+        },
+        datalabels: {
+          color: 'black',
+          anchor: 'end',
+          align: 'start',
+          offset: 5,
+          borderRadius: 20,
+          backgroundColor: (context) => {
+            return context.dataset.backgroundColor;
+          },
+          font:{
+            weight: 'bold',
+            size: '15'
+          },
+          formatter: (value) => {
+            if(value > 0){
+                value = value.toString();
+                value = value.split(/(?=(?:...)*$)/);
+                value = value.join(',');
+                return value + ' avis';
+            }else{
+              value = "";
+              return value;
+            }
+          }
+        }
+      }
+    },
+  plugins: [bgColor, ChartDataLabels],
+});
+
+</script>
+
+{% endfor %}
+    </table>
+
+ <script>
+
+
+function downloadPDF(){
+      let pdf = new jsPDF('portrait');
+      pdf.setFontSize(20);
+
+      pdf.text(15,15, "Les avis sur le self du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} ")
+
+      {% set i = 0 %}
+      {% for categorie in categories %}
+
+      const Categorie{{categorie.id}} = document.getElementById('{{categorie.id}}');
+      const CategorieImage{{categorie.id}} = Categorie{{categorie.id}}.toDataURL('image/jpeg', 1.0);
+
+      {% set i = i + 1 %}
+
+        {% if i%2 != 0 %}
+          pdf.addImage(CategorieImage{{categorie.id}}, 'JPEG', 50, 20, 110, 105);
+
+        {% else %}
+
+          pdf.addImage(CategorieImage{{categorie.id}}, 'JPEG', 50, 160, 110, 105);
+
+          {% if categories|length != i %}
+          pdf.addPage();
+          {% endif %}
+
+        {% endif %}
+      {% endfor %}
+
+      pdf.save('Graphique_Feedback_du_{{startDate|date("d/m/Y")}}_au_{{endDate|date("d/m/Y")}}.pdf');
+    }
+</script> 
+
+{% endblock %}
+

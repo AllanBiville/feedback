@@ -35,10 +35,12 @@ class AvisType extends AbstractType
                 
             ])
                 ->add('commentary', TextareaType::class,[
+                    'required' => false,
                     'attr' => [
                         'id' => 'textarea',
                         'placeholder' => 'Commentaire (Facultatif)',
-                        'maxlength' => '255'
+                        'maxlength' => '255',
+                        
                     ]
                 ])
                 ->add('submit',SubmitType::class,[

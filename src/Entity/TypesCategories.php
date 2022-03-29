@@ -32,6 +32,8 @@ class TypesCategories
      */
     private $statut;
 
+    private $data;
+
     public function __construct(){
         $this->statut = true;
     }
@@ -76,4 +78,17 @@ class TypesCategories
 
         return $this;
     }
+
+    public function getData(): ?string
+    {
+        return $this->data;
+    }
+
+    public function setData(string $data): self
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
 }

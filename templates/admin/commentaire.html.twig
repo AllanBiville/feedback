@@ -24,8 +24,7 @@
 				<div class="py-3">
 				<hr>
 					{% for commentaire in commentaires %}
-
-
+{% if commentaire.commentary is not empty %} 
 						<div class="d-flex comment">
 							<img class="rounded-circle comment-img" src="/images/commentaire.png"/>
 							<div class="flex-grow-1 ms-3">
@@ -39,7 +38,9 @@
 								</a>
 							</div>
 						</div>
-<hr>
+						<hr>{% endif %}
+
+
 					{% else %}
 						<tr>
 							<td colspan="5">Aucune données disponibles !</td>
