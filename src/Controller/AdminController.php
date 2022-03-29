@@ -80,7 +80,7 @@ class AdminController extends AbstractController
             }
         }
 
-        $categoriesFromDatabase = $typesCategoriesRepository->findAll();
+        $categoriesFromDatabase = $typesCategoriesRepository->findAllActive();
         $categoriesWithdata = array();
         foreach ($categoriesFromDatabase as $categorie) {
             $typeCategorieEtoileNotes = array();
