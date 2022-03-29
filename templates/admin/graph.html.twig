@@ -30,8 +30,8 @@ table{
 margin:auto;
 }
 </style>
- 
-    <h1>Les avis du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} le {{repas}} </h1>
+    <h2>Graphique</h2>
+    <h2>Les avis du {{startDate|date('d/m/Y')}} au {{endDate|date('d/m/Y')}} le {{repas}} </h2>
 
     {{form_start(form)}}
         Afficher du : {{form_widget(form.startDate)}} 
@@ -147,7 +147,7 @@ function downloadPDF(){
           {% if categories|length != i %}
           pdf.addPage();
           {% endif %}
-          
+
         {% endif %}
       {% endfor %}
 
