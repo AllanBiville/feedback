@@ -222,7 +222,7 @@ class VisitorController extends AbstractController
                 return $this->redirectToRoute("app_visitor_spam");
             }
 
-            $avis->setDate(date('d-m-Y'));
+            $avis->setDate(date('Y-m-d'));
             
             foreach ($typesCategoriesRepository->findAllActive() as $tc){
                 $note = $request->get($tc->getId());
