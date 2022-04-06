@@ -33,7 +33,10 @@
 							</a>
                             </td>
 						<td>
-							<a class="btn btn-warning" href="{{ path('app_crud_categories_edit', {'id': types_category.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
+						{% if types_category.statut == true %}
+    				<a class="btn btn-warning" href="{{ path('app_crud_categories_edit', {'id': types_category.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><br/>Modifier</a>
+				{% endif %}	
+							
                         </td>
 					</tr>
 				{% else %}
