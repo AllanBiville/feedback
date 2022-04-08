@@ -128,24 +128,24 @@ class AdminController extends AbstractController
             'categories' => $categoriesWithdata,
         ]);
 
-        $dompdf = new Dompdf();
+        // $dompdf = new Dompdf();
 
-        $contents = $this->renderView('admin/graph.html.twig', [
-            'form' => $form->createView(),
-            'startDate' => $startdate,
-            'endDate' => $enddate,
-            'repas' => $repas,
-            'categories' => $categoriesWithdata,
-        ]);
+        // $contents = $this->renderView('admin/graph.html.twig', [
+        //     'form' => $form->createView(),
+        //     'startDate' => $startdate,
+        //     'endDate' => $enddate,
+        //     'repas' => $repas,
+        //     'categories' => $categoriesWithdata,
+        // ]);
 
-        $dompdf->loadHtml($contents);
+        // $dompdf->loadHtml($contents);
 
-        $dompdf->setPaper('A4', 'portrait');
+        // $dompdf->setPaper('A4', 'portrait');
 
-        $dompdf->render();
+        // $dompdf->render();
 
-        $fichier= 'Avis.pdf';
+        // $fichier= 'Avis.pdf';
 
-        return $dompdf->stream($fichier);
+        // return $dompdf->stream($fichier);
     }
 }

@@ -20,7 +20,7 @@ body {
     position: relative;
     background: #ffffff;
     border-radius: 5px;
-    padding: 60px 0 40px 0;
+    padding: 60px 0 40px;
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: 0.3s ease;
@@ -82,7 +82,6 @@ body {
     font-weight: 300;
     line-height: 60px;
     transition: 0.2s ease;
-    color: #9d9d9d;
     transform: translate(-12%, -50%) scale(0.75);
 }
 
