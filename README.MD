@@ -2,8 +2,6 @@ BADGES
 
 CodeFactor : [![CodeFactor](https://www.codefactor.io/repository/github/allanbiville/feedback/badge)](https://www.codefactor.io/repository/github/allanbiville/feedback)
 
-Codacy : [![Codacy Badge](https://app.codacy.com/project/badge/Grade/dae3579f529b457a8e46efe304fb48cb)](https://www.codacy.com/gh/AllanBiville/feedback/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AllanBiville/feedback&amp;utm_campaign=Badge_Grade)
-
 ### SYMFONY     VERSION 5.4.2 ###
 ### COMPOSER    VERSION 2.1.8 ###
 ### PHP         VERSION 7.4.9 ###
