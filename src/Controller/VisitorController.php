@@ -104,13 +104,11 @@ class VisitorController extends AbstractController
         ->setForegroundColor(new Color(0, 0, 0))
         ->setBackgroundColor(new Color(255, 255, 255));
 
-        $logo = Logo::create('images/ndlp.jpg')
-        ->setResizeToWidth(50);
 
         //$label = Label::create('Label')
         //->setTextColor(new Color(255, 0, 0));
 
-        $result = $writer->write($qrCode, $logo);
+        $result = $writer->write($qrCode);
         $dataUri = $result->getDataUri();
 
         return $this->render('visitor/qrcode.html.twig',[
@@ -125,9 +123,6 @@ class VisitorController extends AbstractController
      */
     public function pdf(RequestStack $requestStack, QrcodeTokenRepository $qrCodeTokenRepository,EntityManagerInterface $manager,Request $request): Response
     {
-        $session = $requestStack->getSession();
-        
-        
         $date = date("d-m-y");
         $req = $qrCodeTokenRepository->tokenExist($date);
        
@@ -160,13 +155,11 @@ class VisitorController extends AbstractController
         ->setForegroundColor(new Color(0, 0, 0))
         ->setBackgroundColor(new Color(255, 255, 255));
 
-        $logo = Logo::create('images/ndlp.jpg')
-        ->setResizeToWidth(50);
 
         //$label = Label::create('Label')
         //->setTextColor(new Color(255, 0, 0));
 
-        $result = $writer->write($qrCode, $logo);
+        $result = $writer->write($qrCode);
         $dataUri = $result->getDataUri();
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -191,16 +184,17 @@ class VisitorController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-		return new Response($dompdf->stream("qrcode_$date.pdf", 
-		    ["Attachment" => true]), 
-			Response::HTTP_OK, 
-			['content-type' => 'application/pdf']
-		);
+
+		// return new Response($dompdf->stream("qrcode_$date.pdf", 
+		//     ["Attachment" => true]), 
+		// 	Response::HTTP_OK, 
+		// 	['content-type' => 'application/pdf']
+		// );
+        $dompdf->stream("qrcode_.".$date."_.pdf", [
+            "Attachment" => true
+        ], ['content-type' => 'application/pdf']);
+        return new Response();   
     }
-
-
-    
-
     /**
      * @Route("/form", name="_form")
      */
