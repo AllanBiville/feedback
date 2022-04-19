@@ -9,9 +9,6 @@ warnings_are_errors: false
 services:
     - mysql
 
-php:
-    - 7.4
-
 install:
     - composer install
     - php bin/console doctrine:database:create --env=test
