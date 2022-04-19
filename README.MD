@@ -1,3 +1,7 @@
+TRAVIS CI : 
+
+[![Build Status](https://app.travis-ci.com/AllanBiville/feedback.svg?branch=master)](https://app.travis-ci.com/AllanBiville/feedback)
+
 BADGES 
 
 CodeFactor : [![CodeFactor](https://www.codefactor.io/repository/github/allanbiville/feedback/badge)](https://www.codefactor.io/repository/github/allanbiville/feedback)
