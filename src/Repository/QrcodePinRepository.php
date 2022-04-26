@@ -47,7 +47,6 @@ class QrcodePinRepository extends ServiceEntityRepository
     public function searchPin()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.id = 1')
             ->getQuery()
             ->getOneOrNullResult()
         ;

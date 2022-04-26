@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\QrcodePin;
 use App\Form\QrcodePinType;
 use App\Repository\QrcodePinRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,15 +19,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CrudPinController extends AbstractController
 {
     /**
-     * @Route("/{id}/edit", name="app_crud_pin_edit", methods={"GET", "POST"})
+     * @Route("/edit", name="app_crud_pin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, QrcodePin $qrcodePin, QrcodePinRepository $qrcodePinRepository): Response
+    public function edit(Request $request, QrcodePinRepository $qrcodePinRepository,EntityManagerInterface $em): Response
     {
+        $qrcodePin = $qrcodePinRepository->searchPin();
+        dump($qrcodePin);
         $form = $this->createForm(QrcodePinType::class, $qrcodePin);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $qrcodePinRepository->add($qrcodePin);
+            $em->persist($qrcodePin);
+            $em->flush();
+
             return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
         }
 
