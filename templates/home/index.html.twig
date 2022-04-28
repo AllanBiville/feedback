@@ -87,14 +87,14 @@
 		<img id="feedback-logo" src="{{ asset('images/feedback.png') }}"/>
 	</div>
 		<div class="flexbox">
-			<div id="items1" onclick="document.location='{{ absolute_url('/login') }}'">
+			<div id="items1" onclick="document.location='{{ path('app_login') }}'">
 					<p>Accédez au panel administrateur</p>
-					<a href="{{ absolute_url('/login') }}"><img src="{{ asset('images/login.png') }}"/></a>
+					<a href="{{ path('app_login') }}"><img src="{{ asset('images/login.png') }}"/></a>
 			</div>
         
-			<div id="items2" onclick="document.location='{{ absolute_url('/visitor') }}'">
+			<div id="items2" onclick="document.location='{{ path('app_visitor_pin') }}'">
 					<p>Accédez à la génération du QRCode</p>
-					<a href="{{ absolute_url('/visitor') }}"><img src="{{ asset('images/qrcode.png') }}"/></a>
+					<a href="{{ path('app_visitor_pin') }}"><img src="{{ asset('images/qrcode.png') }}"/></a>
 			</div>
             
 		</div>
