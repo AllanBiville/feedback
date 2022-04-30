@@ -24,7 +24,6 @@ class CrudPinController extends AbstractController
     public function edit(Request $request, QrcodePinRepository $qrcodePinRepository,EntityManagerInterface $em): Response
     {
         $qrcodePin = $qrcodePinRepository->searchPin();
-        dump($qrcodePin);
         $form = $this->createForm(QrcodePinType::class, $qrcodePin);
         $form->handleRequest($request);
 

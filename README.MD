@@ -58,3 +58,14 @@ Here is initial credentials of the super-admin user.
  
  Here is initial credentials of the pin code to access QRcode.
  - Pin code : 12345
+
+
+### 4) Commande for testing
+
+- php bin/console doctrine:database:create --env=test
+
+- php bin/console doctrine:migrations:migrate -n --env=test
+
+- php bin/console doctrine:fixtures:load --env=test
+
+- php bin/phpunit --testdox
