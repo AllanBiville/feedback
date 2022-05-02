@@ -1692,7 +1692,8 @@
             },
             "require": {
                 "bacon/bacon-qr-code": "^2.0.5",
-                "php": "^7.4||^8.0"
+                "php": "^7.4||^8.0",
+                "ext-gd": "*"
             },
             "require-dev": {
                 "endroid/quality": "dev-master",
